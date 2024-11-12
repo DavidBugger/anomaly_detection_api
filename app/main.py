@@ -4,6 +4,7 @@ from app.anomaly import detect_anomaly  # Ensure this handles the model predicti
 from app.auth import validate_user
 from app.login_workflow import login_workflow  # For integration testing
 from google_auth_oauthlib.flow import InstalledAppFlow
+
 app = FastAPI()
 # Include routes from the `auth` and `anomaly` modules
 app.include_router(validate_user)
