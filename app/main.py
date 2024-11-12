@@ -34,6 +34,7 @@ async def login_flow_endpoint(user_data: LoginFeatures, token: str):
 #     try:
         
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# for localhost testing 
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
