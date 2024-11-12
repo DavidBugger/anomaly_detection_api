@@ -1,0 +1,42 @@
+1. Set Up Google Cloud Identity
+Go to Google Cloud Console.
+Navigate to Identity > Cloud Identity.
+If you haven't already done so, set up Cloud Identity for your domain. This will allow you to manage users, groups, and access controls.
+2. Integrate with Google Cloud Directory
+Create or Configure Directory:
+Ensure your organization’s domain is verified and linked with Google Cloud Identity.
+Create user accounts within the Google Cloud Directory.
+Access Cloud Directory APIs:
+Enable the Cloud Identity API:
+gcloud services enable cloudidentity.googleapis.com
+Use this API to manage users and perform operations such as listing users, verifying user details, and managing group memberships.
+3. Create and Configure Service Account
+Create a service account to allow your API to interact with Google Cloud services securely:
+gcloud iam service-accounts create anomaly-api-service \
+  --description="Service account for anomaly detection API" \
+  --display-name="Anomaly Detection API Service Account"
+Grant the required roles to the service account to manage Active Directory integration:
+gcloud projects add-iam-policy-binding your-project-id \
+  --member="serviceAccount:anomaly-api-service@your-project-id.iam.gserviceaccount.com" \
+  --role="roles/admin"
+4. Configure OAuth 2.0 Authentication
+Go to APIs & Services > Credentials.
+Create OAuth 2.0 Client IDs for your web app.
+Download the credentials JSON file and store it securely in your project directory.
+Use libraries like google-auth to authenticate API calls:
+from google.oauth2 import service_account
+from google.auth.transport.requests import Request
+
+# Load credentials from the JSON key file
+credentials = service_account.Credentials.from_service_account_file(
+    'path/to/credentials.json',
+    scopes=['https://www.googleapis.com/auth/cloud-identity']
+)
+
+# Use the credentials to make authenticated requests
+credentials.refresh(Request())
+5. Integrate with Your API
+Extend your Flask or FastAPI app to check user authentication through the Cloud Directory API:5. Integrate with Your API
+Extend your Flask or FastAPI app to check user authentication through the Cloud Directory API:
+5. Integrate with Your API
+Extend your Flask or FastAPI app to check user authentication through the Cloud Directory API:
